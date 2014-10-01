@@ -1,4 +1,4 @@
-package com.seven.bibliotecaweb.dao.exceptions;
+package dao.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

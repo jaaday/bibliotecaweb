@@ -1,4 +1,4 @@
-package com.seven.bibliotecaweb.dao.exceptions;
+package dao.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {
