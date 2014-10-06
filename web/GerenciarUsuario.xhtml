@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gerenciar Usuário</title>
+    </h:head>
+    <h:body>
+        <h:form id="formCadUser">
+            <p:panel header="Gerenciamento de Usuário">
+                <center>
+                    <h:outputText value="Ficha de Cadastro de Usuário"/>
+                </center>
+                <p:panel id="painel">
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nome*:"/>
+                        <h:inputText id="campoNome" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">   
+                        </h:inputText>
+                        <p:message for="campoNome"/>
+                        
+                        <h:outputText value="CPF*:"/>
+                        <p:inputMask id="campoCpf" required="true" requiredMessage="Campo Obrigatório" mask="999.999.999-99">
+                        </p:inputMask>
+                        <p:message for="campoCpf"/>
+                        
+                        <h:outputText value="E-mail*:"/>
+                        <h:inputText id="campoEmail" required=" true" requiredMessage="Campo Obrigatório">
+                            <f:validateRegex pattern="[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})"></f:validateRegex>
+                        </h:inputText>
+                        <p:message for="campoEmail"/>
+                        
+                        <h:outputText value="Endereço*:"/>
+                        <h:inputText id="campoEndereco" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">
+                        </h:inputText>
+                        <p:message for="campoEndereco"/>
+                            
+                    </h:panelGrid>
+                </p:panel>
+                <br/>
+                <h:outputText value="* Indica que o campo são obrigratório"/>
+                <br/>
+                <br/>
+                
+                <p:commandButton id="btCadastrar" value="Cadastrar" ajax="false" update=":formCadUser"/>
+                <p:commandButton id="btAlterar" value="Alterar" ajax="false" update=":tabelaUser, :formCadUser"/>
+                <p:message for="formCadUser"/>
+            </p:panel>
+        </h:form>
+        <br/>
+        <h:form>
+            <p:commandButton id="btLimpar" value="Limpar" icon="ui-icon-document" ajax="false" update=":formCadUser"/>
+        </h:form>
+        <br/>
+        <h:form>
+            <p:panel id="painelPesquisa" header="Pesquisar Usuário(a)">
+                <h:panelGrid columns="3">
+                    <h:outputText value="Nome:"/>
+                    <p:inputText id="campoPesquisar" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">
+                    </p:inputText>
+                    <p:message for="campoPesquisar"/>
+                </h:panelGrid>
+                <br/>
+                <p:commandButton id="btPesquisar" value="Pesquisar" icon="ui-icon-search"/>
+            </p:panel>
+        </h:form>
+        <br/>
+        <h:form>
+            <p:dataTable id="tabelaUser" var="c" emptyMessage="Nenhum Usuário(a) cadastrado!" paginator="true" rows="10"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,30">
+                             
+                <f:facet name="header">
+                    <h:outputText value="Tabela de Usuários(as)"/>
+                </f:facet>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="CPF"/>
+                    </f:facet>
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Excluir"/>
+                    </f:facet>
+                    <center>
+                        <p:commandButton id="btExcluir" ajax="false" icon="ui-icon-trash"/>
+                    </center>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <br/>
+        <h:form id="backPage">
+            <center>
+                <h:commandLink value="Voltar Página" action="/faces/welcomePrimefaces.xhtml"/>
+            </center>
+        </h:form>
+    </h:body>
+</html>
+

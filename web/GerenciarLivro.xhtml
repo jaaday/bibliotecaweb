@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gerenciar Livro</title>
+    </h:head>
+    <h:body>
+        <h:form id="formCadBook">
+            <p:panel header="Gerenciamento de Livro">
+                <center>
+                    <h:outputText value="Ficha de Cadastro de Livro"/>
+                </center>
+                <p:panel id="painel">
+                    <h:panelGrid columns="3">
+                        <h:outputText value="ISBN*:"/>
+                        <h:inputText id="campoIsbn" required="true" requiredMessage="Campo Obrigatório">
+                            
+                        </h:inputText>
+                        <p:message for="campoIsbn"/>
+                        
+                        <h:outputText value="Título*:"/>
+                        <h:inputText id="campoTitulo" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">   
+                        </h:inputText>
+                        <p:message for="campoTitulo"/>
+                        
+                        <h:outputText value="Autor*:"/>
+                        <h:inputText id="campoAutor" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase" >
+                        </h:inputText>
+                        <p:message for="campoAutor"/>
+                        
+                        <h:outputText value="Ano de lançamento*:"/>
+                        <p:calendar id="campoLancamento" required=" true" requiredMessage="Campo Obrigatório" navigator="true" pattern="dd/MM/yyyy" yearRange="c-0:c+0">
+                            
+                        </p:calendar>
+                        <p:message for="campoLancamento"/>
+                        
+                        <h:outputText value="Editora*:"/>
+                        <h:inputText id="campoEditora" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">
+                        </h:inputText>
+                        <p:message for="campoEditora"/>
+                        
+                        <h:outputText value="Área de conhecimento*:"/>
+                        <h:inputText id="campoConhecimento" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">
+                            
+                        </h:inputText>
+                        <p:message for="campoConhecimento"/>
+                        
+                        <h:outputText value="Categoria*:"/>
+                        <h:inputText id="campoCategoria" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">
+                            
+                        </h:inputText>
+                        <p:message for="campoCategoria"    />
+                    </h:panelGrid>
+                </p:panel>
+                <br/>
+                <h:outputText value="* Indica que o campo são obrigratório"/>
+                <br/>
+                <br/>
+                
+                <p:commandButton id="btCadastrar" value="Cadastrar" ajax="false" update=":formCadBook"/>
+                <p:commandButton id="btAlterar" value="Alterar" ajax="false" update=":tabelaBook, :formCadBook"/>
+                <p:message for="formCadBook"/>
+            </p:panel>
+        </h:form>
+        <br/>
+        <h:form>
+            <p:commandButton id="btLimpar" value="Limpar" icon="ui-icon-document" ajax="false" update=":formCadBook"/>
+        </h:form>
+        <br/>
+        <h:form>
+            <p:panel id="painelPesquisa" header="Pesquisar Livro">
+                <h:panelGrid columns="3">
+                    <h:outputText value="Título:"/>
+                    <p:inputText id="campoPesquisar" required="true" requiredMessage="Campo Obrigatório" style="text-transform: uppercase">
+                    </p:inputText>
+                    <p:message for="campoPesquisar"/>
+                </h:panelGrid>
+                <br/>
+                <p:commandButton id="btPesquisar" value="Pesquisar" icon="ui-icon-search"/>
+            </p:panel>
+        </h:form>
+        <br/>
+        <h:form>
+            <p:dataTable id="tabelaBook" var="c" emptyMessage="Nenhum Livro cadastrado!" paginator="true" rows="10"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,30">
+                             
+                <f:facet name="header">
+                    <h:outputText value="Tabela de Livros"/>
+                </f:facet>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN"/>
+                    </f:facet>
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Título"/>
+                    </f:facet>
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Autor"/>
+                    </f:facet>
+                </p:column>
+                                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Excluir"/>
+                    </f:facet>
+                    <center>
+                        <p:commandButton id="btExcluir" ajax="false" icon="ui-icon-trash"/>
+                    </center>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <br/>
+        <h:form id="backPage">
+            <center>
+                <h:commandLink value="Voltar Página" action="/faces/welcomePrimefaces.xhtml"/>
+            </center>
+        </h:form>
+    </h:body>
+</html>
+
